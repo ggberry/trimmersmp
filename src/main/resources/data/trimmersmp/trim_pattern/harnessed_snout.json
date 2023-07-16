@@ -1,0 +1,7 @@
+{
+  "asset_id": "trimmersmp:harnessed_snout",
+  "description": {
+    "translate": "trim_pattern.trimmersmp.harnessed_snout"
+  },
+  "template_item": "trimmersmp:harnessed_snout_armor_trim"
+}

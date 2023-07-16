@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "trimmersmp:item/harnessed_wild_armor_trim"
+  }
+}

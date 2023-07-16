@@ -1,0 +1,7 @@
+{
+  "asset_id": "trimmersmp:harnessed_shaper",
+  "description": {
+    "translate": "trim_pattern.trimmersmp.harnessed_shaper"
+  },
+  "template_item": "trimmersmp:harnessed_shaper_armor_trim"
+}

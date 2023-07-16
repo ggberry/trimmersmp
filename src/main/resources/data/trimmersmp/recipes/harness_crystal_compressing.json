@@ -1,0 +1,14 @@
+{
+  "type": "trimmersmp:crystal_compressor",
+  "ingredients": [
+    {
+      "item": "minecraft:pitcher_plant"
+    }
+  ],
+  "fuel": {
+    "item": "minecraft:turtle_shell"
+  },
+  "output": {
+    "item": "trimmersmp:harness_crystal"
+  }
+}

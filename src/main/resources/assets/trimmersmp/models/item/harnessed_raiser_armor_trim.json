@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "trimmersmp:item/harnessed_raiser_armor_trim"
+  }
+}

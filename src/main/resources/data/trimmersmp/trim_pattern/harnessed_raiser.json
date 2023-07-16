@@ -1,0 +1,7 @@
+{
+  "asset_id": "trimmersmp:harnessed_raiser",
+  "description": {
+    "translate": "trim_pattern.trimmersmp.harnessed_raiser"
+  },
+  "template_item": "trimmersmp:harnessed_raiser_armor_trim"
+}

@@ -1,0 +1,50 @@
+{
+  "sources": [
+    {
+      "type": "paletted_permutations",
+      "textures": [
+        "trimmersmp:trims/models/armor/harnessed_eye",
+        "trimmersmp:trims/models/armor/harnessed_eye_leggings",
+
+        "trimmersmp:trims/models/armor/harnessed_raiser",
+        "trimmersmp:trims/models/armor/harnessed_raiser_leggings",
+
+        "trimmersmp:trims/models/armor/harnessed_rib",
+        "trimmersmp:trims/models/armor/harnessed_rib_leggings",
+
+        "trimmersmp:trims/models/armor/harnessed_shaper",
+        "trimmersmp:trims/models/armor/harnessed_shaper_leggings",
+
+        "trimmersmp:trims/models/armor/harnessed_silence",
+        "trimmersmp:trims/models/armor/harnessed_silence_leggings",
+
+        "trimmersmp:trims/models/armor/harnessed_snout",
+        "trimmersmp:trims/models/armor/harnessed_snout_leggings",
+
+        "trimmersmp:trims/models/armor/harnessed_vex",
+        "trimmersmp:trims/models/armor/harnessed_vex_leggings",
+
+        "trimmersmp:trims/models/armor/harnessed_wild",
+        "trimmersmp:trims/models/armor/harnessed_wild_leggings"
+      ],
+      "palette_key": "trimmersmp:trims/color_palettes/trim_palette",
+      "permutations": {
+        "quartz": "trimmersmp:trims/color_palettes/quartz",
+        "iron": "trimmersmp:trims/color_palettes/iron",
+        "gold": "trimmersmp:trims/color_palettes/gold",
+        "diamond": "trimmersmp:trims/color_palettes/diamond",
+        "netherite": "trimmersmp:trims/color_palettes/netherite",
+        "redstone": "trimmersmp:trims/color_palettes/redstone",
+        "copper": "trimmersmp:trims/color_palettes/copper",
+        "emerald": "trimmersmp:trims/color_palettes/emerald",
+        "lapis": "trimmersmp:trims/color_palettes/lapis",
+        "amethyst": "trimmersmp:trims/color_palettes/amethyst",
+
+        "iron_darker": "trimmersmp:trims/color_palettes/iron_darker",
+        "gold_darker": "trimmersmp:trims/color_palettes/gold_darker",
+        "diamond_darker": "trimmersmp:trims/color_palettes/diamond_darker",
+        "netherite_darker": "trimmersmp:trims/color_palettes/netherite_darker"
+      }
+    }
+  ]
+}
