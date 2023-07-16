@@ -17,7 +17,7 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
     private final ItemStack output;
     private final DefaultedList<Ingredient> recipeItems;
 
-    public CrystalCompressorRecipe(Identifier id, ItemStack fuel, ItemStack output, DefaultedList<Ingredient> recipeItems) {
+    public CrystalCompressorRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
@@ -74,7 +74,6 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
 
         @Override
         public CrystalCompressorRecipe read(Identifier id, JsonObject json) {
-            ItemStack fuel = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "fuel"));
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
 
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
@@ -84,7 +83,7 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new CrystalCompressorRecipe(id, fuel, output, inputs);
+            return new CrystalCompressorRecipe(id, output, inputs);
         }
 
         @Override
@@ -95,9 +94,8 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
                 inputs.set(i, Ingredient.fromPacket(buf));
             }
 
-            ItemStack fuel = buf.readItemStack();
             ItemStack output = buf.readItemStack();
-            return new CrystalCompressorRecipe(id, fuel, output, inputs);
+            return new CrystalCompressorRecipe(id, output, inputs);
         }
 
         @Override

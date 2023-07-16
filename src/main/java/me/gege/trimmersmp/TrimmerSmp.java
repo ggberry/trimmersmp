@@ -27,6 +27,7 @@ public class TrimmerSmp implements ModInitializer {
 
 		ItemGroupEvents.modifyEntriesEvent(ModItems.TRIMMERSMP_GROUP).register(itemGroup -> {
 			itemGroup.add(ModItems.HARNESS_CRYSTAL);
+			itemGroup.add(ModItems.ROUGH_HARNESS_CRYSTAL);
 
 			itemGroup.add(ModItems.HARNESSED_WILD_ARMOR_TRIM);
 			itemGroup.add(ModItems.HARNESSED_VEX_ARMOR_TRIM);

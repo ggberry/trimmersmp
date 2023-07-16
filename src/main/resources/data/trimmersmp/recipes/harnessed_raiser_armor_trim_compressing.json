@@ -2,13 +2,13 @@
   "type": "trimmersmp:crystal_compressor",
   "ingredients": [
     {
-      "item": "minecraft:eye_armor_trim_smithing_template"
+      "item": "minecraft:raiser_armor_trim_smithing_template"
     },
     {
       "item": "trimmersmp:harness_crystal"
     }
   ],
   "output": {
-    "item": "trimmersmp:harnessed_eye_armor_trim"
+    "item": "trimmersmp:harnessed_raiser_armor_trim"
   }
 }

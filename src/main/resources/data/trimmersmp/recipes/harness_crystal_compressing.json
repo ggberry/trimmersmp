@@ -2,12 +2,12 @@
   "type": "trimmersmp:crystal_compressor",
   "ingredients": [
     {
-      "item": "minecraft:pitcher_plant"
+      "item": "trimmersmp:rough_harness_crystal"
+    },
+    {
+      "item": "minecraft:enchanted_golden_apple"
     }
   ],
-  "fuel": {
-    "item": "minecraft:turtle_shell"
-  },
   "output": {
     "item": "trimmersmp:harness_crystal"
   }

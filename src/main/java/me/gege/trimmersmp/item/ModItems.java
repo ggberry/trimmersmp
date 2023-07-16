@@ -19,6 +19,12 @@ public class ModItems {
                     .fireproof()
     ));
 
+    public static final Item ROUGH_HARNESS_CRYSTAL = registerItem("rough_harness_crystal", new Item(
+            new FabricItemSettings()
+                    .maxCount(4)
+                    .fireproof()
+    ));
+
     // Trims
 
     public static final Item HARNESSED_WILD_ARMOR_TRIM = (Item) registerItem("harnessed_wild_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.WILD));
