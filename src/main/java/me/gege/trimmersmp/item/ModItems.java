@@ -15,13 +15,13 @@ import net.minecraft.util.Identifier;
 public class ModItems {
     public static final Item HARNESS_CRYSTAL = registerItem("harness_crystal", new Item(
             new FabricItemSettings()
-                    .maxCount(4)
+                    .maxCount(1)
                     .fireproof()
     ));
 
     public static final Item ROUGH_HARNESS_CRYSTAL = registerItem("rough_harness_crystal", new Item(
             new FabricItemSettings()
-                    .maxCount(4)
+                    .maxCount(1)
                     .fireproof()
     ));
 

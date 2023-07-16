@@ -35,13 +35,15 @@ public class CrystalCompressorScreen extends HandledScreen<CrystalCompressorScre
 
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(TEXTURE, x + 101, y + 39, 176, 0, handler.getScaledProgress(), 15);
+            context.drawTexture(TEXTURE, x + 17, y + 62, 0, 168, handler.getScaledProgress(), 2);
+            // context.drawTexture(TEXTURE, x + 159  - handler.getScaledProgress(), y + 62, 0, 168, handler.getScaledProgress(), 2);
         }
     }
 
     private void renderNoRecipe(DrawContext context, int x, int y) {
         if(!handler.isCrafting()) {
-            context.drawTexture(TEXTURE, x + 101, y + 39, 176, 15, 22, 15);
+            context.drawTexture(TEXTURE, x + 51, y + 39, 176, 0, 22, 15);
+            context.drawTexture(TEXTURE, x + 103, y + 39, 176, 15, 22, 15);
         }
     }
 

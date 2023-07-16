@@ -29,9 +29,8 @@ import java.util.Optional;
 public class CrystalCompressorBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
     protected final PropertyDelegate propertyDelegate;
-    String FUEL = "turtle_helmet";
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 12000;
     public CrystalCompressorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CRYSTAL_COMPRESSOR_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
@@ -84,6 +83,13 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
         Inventories.readNbt(nbt, inventory);
         super.readNbt(nbt);
         progress = nbt.getInt("crystal_compressor.progress");
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        NbtCompound nbtCompound = new NbtCompound();
+        Inventories.writeNbt(nbtCompound, this.inventory, true);
+        return nbtCompound;
     }
 
     private void resetProgress() {

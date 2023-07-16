@@ -2,10 +2,10 @@
   "type": "trimmersmp:crystal_compressor",
   "ingredients": [
     {
-      "item": "minecraft:pitcher_plant"
+      "item": "minecraft:music_disc_relic"
     },
     {
-      "item": "minecraft:turtle_helmet"
+      "item": "minecraft:pitcher_plant"
     }
   ],
   "output": {
