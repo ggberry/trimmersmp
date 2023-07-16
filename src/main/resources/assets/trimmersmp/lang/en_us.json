@@ -3,6 +3,7 @@
 
   "item.trimmersmp.harness_crystal": "Harness Crystal",
   "item.trimmersmp.rough_harness_crystal": "Rough Harness Crystal",
+  "block.trimmersmp.crystal_compressor": "Crystal Compressor",
 
   "item.trimmersmp.harnessed_coast_armor_trim": "Harnessed Coast Armor Trim",
   "item.trimmersmp.harnessed_dune_armor_trim": "Harnessed Dune Armor Trim",
@@ -28,7 +29,5 @@
   "trim_pattern.trimmersmp.harnessed_silence": "Harnessed Silence Armor Trim",
   "trim_pattern.trimmersmp.harnessed_snout": "Harnessed Snout Armor Trim",
   "trim_pattern.trimmersmp.harnessed_vex": "Harnessed Vex Armor Trim",
-  "trim_pattern.trimmersmp.harnessed_wild": "Harnessed Wild Armor Trim",
-
-  "block.trimmersmp.crystal_compressor": "Crystal Compressor"
+  "trim_pattern.trimmersmp.harnessed_wild": "Harnessed Wild Armor Trim"
 }

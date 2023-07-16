@@ -15,6 +15,8 @@ import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -105,6 +107,10 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
         }
     }
 
+    private World getWorldAccess() {
+        return this.getWorld();
+    }
+
     private static void craftItem(CrystalCompressorBlockEntity entity) {
         SimpleInventory inventory = new SimpleInventory(entity.size());
         for (int i = 0; i < entity.size(); i++) {
@@ -122,6 +128,12 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
                     entity.getStack(2).getCount() + 1));
 
             entity.resetProgress();
+            if (entity.getWorldAccess() != null) {
+                entity.getWorldAccess().playSound(null,
+                        new BlockPos(entity.getPos().getX(), entity.getPos().getY(), entity.getPos().getZ()),
+                        SoundEvents.BLOCK_ANVIL_USE,
+                        SoundCategory.BLOCKS);
+            }
         }
     }
 

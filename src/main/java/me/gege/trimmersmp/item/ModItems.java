@@ -35,14 +35,6 @@ public class ModItems {
     public static final Item HARNESSED_SILENCE_ARMOR_TRIM = (Item) registerItem("harnessed_silence_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.SILENCE));
     public static final Item HARNESSED_RAISER_ARMOR_TRIM = (Item) registerItem("harnessed_raiser_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.RAISER));
     public static final Item HARNESSED_SHAPER_ARMOR_TRIM = (Item) registerItem("harnessed_shaper_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.SHAPER));
-    //public static final Item HARNESSED_HOST_ARMOR_TRIM = (Item) registerItem("harnessed_host_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.HOST));
-    //public static final Item HARNESSED_WAYFINDER_ARMOR_TRIM = (Item) registerItem("harnessed_wayfinder_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.WAYFINDER));
-    //public static final Item HARNESSED_TIDE_ARMOR_TRIM = (Item) registerItem("harnessed_tide_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.TIDE));
-    //public static final Item HARNESSED_WARD_ARMOR_TRIM = (Item) registerItem("harnessed_ward_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.WARD));
-    //public static final Item HARNESSED_DUNE_ARMOR_TRIM = (Item) registerItem("harnessed_dune_armor_trim", SmithingTemplateItem.of(ArmorTrimPatterns.DUNE));
-    //public static final Item HARNESSED_COAST_ARMOR_TRIM = (Item) registerItem("harnessed_coast_armor_trim", SmithingTemplateItem.of(ArmorTrimPatterns.COAST));
-    //public static final Item HARNESSED_SENTRY_ARMOR_TRIM = (Item) registerItem("harnessed_sentry_armor_trim", SmithingTemplateItem.of(ArmorTrimPatterns.SENTRY));
-    //public static final Item HARNESSED_SPIRE_ARMOR_TRIM = (Item) registerItem("harnessed_spire_armor_trim",  SmithingTemplateItem.of(ArmorTrimPatterns.SPIRE));
 
     // Group
     public static final RegistryKey<ItemGroup> TRIMMERSMP_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(TrimmerSmp.MOD_ID, "gegemod"));

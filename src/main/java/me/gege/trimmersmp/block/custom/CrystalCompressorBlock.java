@@ -9,6 +9,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -77,6 +79,13 @@ public class CrystalCompressorBlock extends BlockWithEntity implements BlockEnti
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos,
                               PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (player.getWorld() != null) {
+            player.getWorld().playSound(null,
+                    pos,
+                    SoundEvents.BLOCK_BAMBOO_WOOD_BREAK,
+                    SoundCategory.BLOCKS);
+        }
+
         if (!world.isClient) {
             NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
 

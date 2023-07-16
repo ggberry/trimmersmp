@@ -2,14 +2,11 @@ package me.gege.trimmersmp.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.gege.trimmersmp.TrimmerSmp;
-import me.gege.trimmersmp.block.entity.CrystalCompressorBlockEntity;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-
-import static me.gege.trimmersmp.block.entity.CrystalCompressorBlockEntity.hasRecipe;
 
 public class CrystalCompressorScreen extends HandledScreen<CrystalCompressorScreenHandler> {
     private static final Identifier TEXTURE =
