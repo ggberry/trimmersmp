@@ -1,7 +1,7 @@
 package me.gege.trimmersmp.mixin;
 
 import com.google.common.collect.Multimap;
-import me.gege.trimmersmp.trim_mechanics.ModTrimMechanics;
+import me.gege.trimmersmp.util.TrimCounter;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -26,7 +26,7 @@ public abstract class VexTrimMechanic extends LivingEntity{
 
     @Inject(at = @At("HEAD"), method = "getAttackCooldownProgressPerTick", cancellable = true)
     public void vexTrimMechanic(CallbackInfoReturnable<Float> cir) {
-        int trims = new ModTrimMechanics().equippedTrims(this.getArmorItems(), "vex");
+        int trims = new TrimCounter().equippedTrims(this.getArmorItems(), "vex");
         Multimap<EntityAttribute, EntityAttributeModifier> handItem = this.getStackInHand(this.getActiveHand()).getAttributeModifiers(EquipmentSlot.MAINHAND);
 
         int DEFAULT_ATTACK_SPEED = 4;

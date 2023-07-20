@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "## ",
-    "#H ",
+    "   ",
+    "# #",
     "___"
   ],
   "key": {
     "#": {
-      "item": "minecraft:stone"
-    },
-    "H": {
-      "item": "minecraft:heavy_weighted_pressure_plate"
+      "item": "minecraft:piston"
     },
     "_": {
-      "item": "minecraft:oak_slab"
+      "item": "minecraft:netherite_block"
     }
   },
   "result": {

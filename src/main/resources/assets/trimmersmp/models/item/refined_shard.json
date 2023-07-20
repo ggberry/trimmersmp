@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "trimmersmp:item/rough_harness_crystal"
+    "layer0": "trimmersmp:item/refined_shard"
   }
 }

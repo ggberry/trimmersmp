@@ -15,7 +15,7 @@ import net.minecraft.item.BlockItem;
 
 public class ModBlocks {
     public static final Block CRYSTAL_COMPRESSOR = registerBlock("crystal_compressor",
-            new CrystalCompressorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(4f).nonOpaque().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+            new CrystalCompressorBlock(FabricBlockSettings.copyOf(Blocks.NETHERITE_BLOCK).requiresTool().strength(50f).nonOpaque().sounds(BlockSoundGroup.WOOD)));
 
 
     private static Block registerBlock(String name, Block block) {

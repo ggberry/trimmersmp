@@ -1,25 +1,44 @@
 {
-  "variants": {
-    "facing=north": {
-      "model": "trimmersmp:block/crystal_compressor"
+  "multipart": [
+    {
+      "apply": {
+        "model": "trimmersmp:block/crystal_compressor"
+      },
+      "when": {
+        "state": "0"
+      }
     },
-    "facing=south": {
-      "model": "trimmersmp:block/crystal_compressor",
-      "y": 180
+    {
+      "apply": {
+        "model": "trimmersmp:block/crystal_compressor1"
+      },
+      "when": {
+        "state": "1"
+      }
     },
-    "facing=west": {
-      "model": "trimmersmp:block/crystal_compressor",
-      "y": 270
+    {
+      "apply": {
+        "model": "trimmersmp:block/crystal_compressor2"
+      },
+      "when": {
+        "state": "2"
+      }
     },
-    "facing=east": {
-      "model": "trimmersmp:block/crystal_compressor",
-      "y": 90
+    {
+      "apply": {
+        "model": "trimmersmp:block/crystal_compressor3"
+      },
+      "when": {
+        "state": "3"
+      }
     },
-    "facing=up": {
-      "model": "trimmersmp:block/crystal_compressor"
-    },
-    "facing=down": {
-      "model": "trimmersmp:block/crystal_compressor"
+    {
+      "apply": {
+        "model": "trimmersmp:block/crystal_compressor4"
+      },
+      "when": {
+        "state": "4"
+      }
     }
-  }
+  ]
 }

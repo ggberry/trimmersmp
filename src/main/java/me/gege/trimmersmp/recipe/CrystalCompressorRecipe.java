@@ -15,11 +15,13 @@ import net.minecraft.world.World;
 public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
     private final Identifier id;
     private final ItemStack output;
+    private final Integer time;
     private final DefaultedList<Ingredient> recipeItems;
 
-    public CrystalCompressorRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
+    public CrystalCompressorRecipe(Identifier id, ItemStack output, Integer time, DefaultedList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
+        this.time = time;
         this.recipeItems = recipeItems;
     }
 
@@ -29,7 +31,8 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
             return false;
         }
 
-        return recipeItems.get(0).test(inventory.getStack(1));
+        return (recipeItems.get(0).test(inventory.getStack(0)) && recipeItems.get(1).test(inventory.getStack(1))) ||
+                (recipeItems.get(1).test(inventory.getStack(0)) && recipeItems.get(0).test(inventory.getStack(1)));
     }
 
     @Override
@@ -61,6 +64,10 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
     public RecipeType<?> getType() {
         return Type.INSTANCE;
     }
+
+    public Integer getTime() {
+        return time;
+    }
     public static class Type implements RecipeType<CrystalCompressorRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
@@ -75,15 +82,16 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
         @Override
         public CrystalCompressorRecipe read(Identifier id, JsonObject json) {
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
+            Integer time = JsonHelper.getInt(json, "time");
 
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
-            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(1, Ingredient.EMPTY);
+            DefaultedList<Ingredient> inputs = DefaultedList.ofSize(2, Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new CrystalCompressorRecipe(id, output, inputs);
+            return new CrystalCompressorRecipe(id, output, time, inputs);
         }
 
         @Override
@@ -94,8 +102,9 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
                 inputs.set(i, Ingredient.fromPacket(buf));
             }
 
+            Integer time = buf.readInt();
             ItemStack output = buf.readItemStack();
-            return new CrystalCompressorRecipe(id, output, inputs);
+            return new CrystalCompressorRecipe(id, output, time, inputs);
         }
 
         @Override

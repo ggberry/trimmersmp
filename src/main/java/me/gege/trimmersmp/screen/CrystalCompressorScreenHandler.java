@@ -1,5 +1,6 @@
 package me.gege.trimmersmp.screen;
 
+import me.gege.trimmersmp.screen.custom.CompressionSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -24,9 +25,9 @@ public class CrystalCompressorScreenHandler extends ScreenHandler {
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 
-        this.addSlot(new Slot(inventory, 0, 28, 39));
-        this.addSlot(new Slot(inventory, 1, 132, 39));
-        this.addSlot(new Slot(inventory, 2, 80, 39));
+        this.addSlot(new Slot(inventory, 0, 28, 27));
+        this.addSlot(new Slot(inventory, 1, 132, 27));
+        this.addSlot(new CompressionSlot(inventory, 2, 80, 27));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -38,7 +39,11 @@ public class CrystalCompressorScreenHandler extends ScreenHandler {
         return propertyDelegate.get(0) > 0;
     }
 
-    public int getScaledProgress() {
+    public boolean isEmpty() {
+        return inventory.isEmpty();
+    }
+
+    public int getBarProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);  // Max Progress
         int progressArrowSize = 143; // This is the width in pixels of your arrow
@@ -46,6 +51,17 @@ public class CrystalCompressorScreenHandler extends ScreenHandler {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
+    public int getProgressRemaining() {
+        int progress = this.propertyDelegate.get(0);
+        int maxProgress = this.propertyDelegate.get(1);
+
+        return maxProgress - progress;
+    }
+
+    @Override
+    public boolean canInsertIntoSlot(Slot slot) {
+        return false;
+    }
 
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {

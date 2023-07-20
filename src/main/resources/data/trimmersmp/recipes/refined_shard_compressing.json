@@ -1,0 +1,15 @@
+{
+  "type": "trimmersmp:crystal_compressor",
+  "ingredients": [
+    {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    {
+      "item": "trimmersmp:rooted_shard"
+    }
+  ],
+  "output": {
+    "item": "trimmersmp:refined_shard"
+  },
+  "time": 1200
+}

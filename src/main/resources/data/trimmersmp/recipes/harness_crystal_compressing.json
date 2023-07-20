@@ -2,13 +2,14 @@
   "type": "trimmersmp:crystal_compressor",
   "ingredients": [
     {
-      "item": "trimmersmp:rough_harness_crystal"
+      "item": "minecraft:end_crystal"
     },
     {
-      "item": "minecraft:enchanted_golden_apple"
+      "item": "trimmersmp:refined_shard"
     }
   ],
   "output": {
     "item": "trimmersmp:harness_crystal"
-  }
+  },
+  "time": 12000
 }

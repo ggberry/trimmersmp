@@ -29,22 +29,41 @@ public class CrystalCompressorScreen extends HandledScreen<CrystalCompressorScre
         int y = (height - backgroundHeight) / 2;
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        renderProgressArrow(context, x, y);
+        renderProgressBar(context, x, y);
+        renderTimer(context, x, y);
         renderNoRecipe(context, x, y);
     }
 
-    private void renderProgressArrow(DrawContext context, int x, int y) {
+    private void renderProgressBar(DrawContext context, int x, int y) {
         if(handler.isCrafting()) {
-            context.drawTexture(TEXTURE, x + 17, y + 62, 0, 168, handler.getScaledProgress(), 2);
-            // context.drawTexture(TEXTURE, x + 159  - handler.getScaledProgress(), y + 62, 0, 168, handler.getScaledProgress(), 2);
+            context.drawTexture(TEXTURE, x + 17, y + 50, 0, 168, handler.getBarProgress(), 2);
         }
     }
 
     private void renderNoRecipe(DrawContext context, int x, int y) {
-        if(!handler.isCrafting()) {
-            context.drawTexture(TEXTURE, x + 51, y + 39, 176, 0, 22, 15);
-            context.drawTexture(TEXTURE, x + 103, y + 39, 176, 15, 22, 15);
+        if(!handler.isCrafting() && !handler.isEmpty()) {
+            context.drawTexture(TEXTURE, x + 51, y + 27, 176, 0, 22, 15);
+            context.drawTexture(TEXTURE, x + 103, y + 27, 176, 15, 22, 15);
         }
+    }
+
+    private void renderTimer(DrawContext context, int x, int y) {
+        float time = (float) handler.getProgressRemaining() / 20;
+        String measurement = "s";
+
+        if (time >= 60) {
+            time /= 60;
+            measurement = "m";
+
+            if (time > 60) {
+                time /= 60;
+                measurement = "h";
+            }
+        }
+
+        String text = "Time remaining: " + (Math.round(time) + measurement);
+
+        context.drawText(this.textRenderer, text, x + 90 - textRenderer.getWidth(text) / 2, y + 55, 0x3f3f3f, false);
     }
 
     @Override
