@@ -1,6 +1,6 @@
 package me.gege.trimmersmp.block.custom;
 
-import me.gege.trimmersmp.block.entity.CrystalCompressorBlockEntity;
+import me.gege.trimmersmp.block.entity.CompressorBlockEntity;
 import me.gege.trimmersmp.block.entity.ModBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
@@ -18,13 +18,13 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CrystalCompressorBlock extends BlockWithEntity implements BlockEntityProvider {
+public class CompressorBlock extends BlockWithEntity implements BlockEntityProvider {
     public static final int MAX_COMPRESSION = 5;
     public static final int PERCENTAGE = 100 / MAX_COMPRESSION;
     public static final IntProperty COMPRESSION = IntProperty.of("state", 0, MAX_COMPRESSION);
 
 
-    public CrystalCompressorBlock(Settings settings) {
+    public CompressorBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(COMPRESSION, 0));
     }
@@ -52,8 +52,8 @@ public class CrystalCompressorBlock extends BlockWithEntity implements BlockEnti
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CrystalCompressorBlockEntity) {
-                ItemScatterer.spawn(world, pos, (CrystalCompressorBlockEntity)blockEntity);
+            if (blockEntity instanceof CompressorBlockEntity) {
+                ItemScatterer.spawn(world, pos, (CompressorBlockEntity)blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -77,12 +77,12 @@ public class CrystalCompressorBlock extends BlockWithEntity implements BlockEnti
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CrystalCompressorBlockEntity(pos, state);
+        return new CompressorBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.CRYSTAL_COMPRESSOR_ENTITY, CrystalCompressorBlockEntity::tick);
+        return checkType(type, ModBlockEntities.COMPRESSOR_ENTITY, CompressorBlockEntity::tick);
     }
 }

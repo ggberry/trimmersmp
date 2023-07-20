@@ -8,11 +8,11 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class CrystalCompressorScreen extends HandledScreen<CrystalCompressorScreenHandler> {
+public class CompressorScreen extends HandledScreen<CompressorScreenHandler> {
     private static final Identifier TEXTURE =
-            new Identifier(TrimmerSmp.MOD_ID, "textures/gui/crystal_compressor_gui.png");
+            new Identifier(TrimmerSmp.MOD_ID, "textures/gui/compressor_gui.png");
 
-    public CrystalCompressorScreen(CrystalCompressorScreenHandler handler, PlayerInventory inventory, Text title) {
+    public CompressorScreen(CompressorScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
 

@@ -12,13 +12,13 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
+public class CompressorRecipe implements Recipe<SimpleInventory> {
     private final Identifier id;
     private final ItemStack output;
     private final Integer time;
     private final DefaultedList<Ingredient> recipeItems;
 
-    public CrystalCompressorRecipe(Identifier id, ItemStack output, Integer time, DefaultedList<Ingredient> recipeItems) {
+    public CompressorRecipe(Identifier id, ItemStack output, Integer time, DefaultedList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.time = time;
@@ -68,19 +68,19 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
     public Integer getTime() {
         return time;
     }
-    public static class Type implements RecipeType<CrystalCompressorRecipe> {
+    public static class Type implements RecipeType<CompressorRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
-        public static final String ID = "crystal_compressor";
+        public static final String ID = "compressor";
     }
 
-    public static class Serializer implements RecipeSerializer<CrystalCompressorRecipe> {
+    public static class Serializer implements RecipeSerializer<CompressorRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final String ID = "crystal_compressor";
+        public static final String ID = "compressing";
         // this is the name given in the json file
 
         @Override
-        public CrystalCompressorRecipe read(Identifier id, JsonObject json) {
+        public CompressorRecipe read(Identifier id, JsonObject json) {
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
             Integer time = JsonHelper.getInt(json, "time");
 
@@ -91,11 +91,11 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new CrystalCompressorRecipe(id, output, time, inputs);
+            return new CompressorRecipe(id, output, time, inputs);
         }
 
         @Override
-        public CrystalCompressorRecipe read(Identifier id, PacketByteBuf buf) {
+        public CompressorRecipe read(Identifier id, PacketByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -104,11 +104,11 @@ public class CrystalCompressorRecipe implements Recipe<SimpleInventory> {
 
             Integer time = buf.readInt();
             ItemStack output = buf.readItemStack();
-            return new CrystalCompressorRecipe(id, output, time, inputs);
+            return new CompressorRecipe(id, output, time, inputs);
         }
 
         @Override
-        public void write(PacketByteBuf buf, CrystalCompressorRecipe recipe) {
+        public void write(PacketByteBuf buf, CompressorRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);

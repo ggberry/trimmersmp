@@ -1,5 +1,5 @@
 {
-  "type": "trimmersmp:crystal_compressor",
+  "type": "trimmersmp:compressing",
   "ingredients": [
     {
       "item": "minecraft:shaper_armor_trim_smithing_template"

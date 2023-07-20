@@ -9,11 +9,11 @@ import net.minecraft.util.Identifier;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 
 public class ModBlockEntities {
-    public static BlockEntityType<CrystalCompressorBlockEntity> CRYSTAL_COMPRESSOR_ENTITY;
+    public static BlockEntityType<CompressorBlockEntity> COMPRESSOR_ENTITY;
 
     public static void registerBlockEntities() {
-        CRYSTAL_COMPRESSOR_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
-                new Identifier(TrimmerSmp.MOD_ID, "crystal_compressor"),
-                FabricBlockEntityTypeBuilder.create(CrystalCompressorBlockEntity::new , ModBlocks.CRYSTAL_COMPRESSOR).build(null));
+        COMPRESSOR_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+                new Identifier(TrimmerSmp.MOD_ID, "compressor"),
+                FabricBlockEntityTypeBuilder.create(CompressorBlockEntity::new , ModBlocks.COMPRESSOR).build(null));
     }
 }

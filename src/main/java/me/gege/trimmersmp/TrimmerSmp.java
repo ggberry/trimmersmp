@@ -39,7 +39,7 @@ public class TrimmerSmp implements ModInitializer {
 			itemGroup.add(ModItems.HARNESSED_RAISER_ARMOR_TRIM);
 			itemGroup.add(ModItems.HARNESSED_SHAPER_ARMOR_TRIM);
 
-			itemGroup.add(ModBlocks.CRYSTAL_COMPRESSOR);
+			itemGroup.add(ModBlocks.COMPRESSOR);
 		});
 
 		LOGGER.info("Initialized Trimmer SMP plugin (1.20.1)");

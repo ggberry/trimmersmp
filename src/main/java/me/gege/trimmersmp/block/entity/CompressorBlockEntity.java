@@ -1,8 +1,8 @@
 
 package me.gege.trimmersmp.block.entity;
 
-import me.gege.trimmersmp.recipe.CrystalCompressorRecipe;
-import me.gege.trimmersmp.screen.CrystalCompressorScreenHandler;
+import me.gege.trimmersmp.recipe.CompressorRecipe;
+import me.gege.trimmersmp.screen.CompressorScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,28 +25,28 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-import static me.gege.trimmersmp.block.custom.CrystalCompressorBlock.*;
+import static me.gege.trimmersmp.block.custom.CompressorBlock.*;
 
-public class CrystalCompressorBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
+public class CompressorBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
     private int maxProgress;
-    public CrystalCompressorBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.CRYSTAL_COMPRESSOR_ENTITY, pos, state);
+    public CompressorBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.COMPRESSOR_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             public int get(int index) {
                 switch (index) {
-                    case 0: return CrystalCompressorBlockEntity.this.progress;
-                    case 1: return CrystalCompressorBlockEntity.this.getMaxTime();
+                    case 0: return CompressorBlockEntity.this.progress;
+                    case 1: return CompressorBlockEntity.this.getMaxTime();
                     default: return 0;
                 }
             }
 
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: CrystalCompressorBlockEntity.this.progress = value; break;
-                    case 1: CrystalCompressorBlockEntity.this.maxProgress = value; break;
+                    case 0: CompressorBlockEntity.this.progress = value; break;
+                    case 1: CompressorBlockEntity.this.maxProgress = value; break;
                 }
             }
 
@@ -63,28 +63,28 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("Crystal Compressor");
+        return Text.literal("Compressor");
     }
 
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         this.propertyDelegate.set(1, getMaxTime());
-        return new CrystalCompressorScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+        return new CompressorScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
-        nbt.putInt("crystal_compressor.progress", progress);
+        nbt.putInt("compressor.progress", progress);
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         Inventories.readNbt(nbt, inventory);
         super.readNbt(nbt);
-        progress = nbt.getInt("crystal_compressor.progress");
+        progress = nbt.getInt("compressor.progress");
     }
 
     @Override
@@ -98,7 +98,7 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
         this.progress = 0;
     }
 
-    public static void tick(World world, BlockPos blockPos, BlockState blockState, CrystalCompressorBlockEntity entity) {
+    public static void tick(World world, BlockPos blockPos, BlockState blockState, CompressorBlockEntity entity) {
         if (world.isClient()) {
             return;
         }
@@ -137,8 +137,8 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
             inventory.setStack(i, this.getStack(i));
         }
 
-        Optional<CrystalCompressorRecipe> match = this.getWorld().getRecipeManager()
-                .getFirstMatch(CrystalCompressorRecipe.Type.INSTANCE, inventory, this.getWorld());
+        Optional<CompressorRecipe> match = this.getWorld().getRecipeManager()
+                .getFirstMatch(CompressorRecipe.Type.INSTANCE, inventory, this.getWorld());
 
         if (match.isPresent()) {
             return match.get().getTime();
@@ -147,14 +147,14 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
         return 0;
     }
 
-    private static void craftItem(CrystalCompressorBlockEntity entity) {
+    private static void craftItem(CompressorBlockEntity entity) {
         SimpleInventory inventory = new SimpleInventory(entity.size());
         for (int i = 0; i < entity.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
-        Optional<CrystalCompressorRecipe> recipe = entity.getWorld().getRecipeManager()
-                .getFirstMatch(CrystalCompressorRecipe.Type.INSTANCE, inventory, entity.getWorld());
+        Optional<CompressorRecipe> recipe = entity.getWorld().getRecipeManager()
+                .getFirstMatch(CompressorRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
         if(hasRecipe(entity)) {
             entity.removeStack(0, 1);
@@ -167,15 +167,15 @@ public class CrystalCompressorBlockEntity extends BlockEntity implements NamedSc
         }
     }
 
-    public static boolean hasRecipe(CrystalCompressorBlockEntity entity) {
+    public static boolean hasRecipe(CompressorBlockEntity entity) {
         SimpleInventory inventory = new SimpleInventory(entity.size());
         for (int i = 0; i < entity.size(); i++) {
             inventory.setStack(i, entity.getStack(i));
         }
 
 
-        Optional<CrystalCompressorRecipe> match = entity.getWorld().getRecipeManager()
-                .getFirstMatch(CrystalCompressorRecipe.Type.INSTANCE, inventory, entity.getWorld());
+        Optional<CompressorRecipe> match = entity.getWorld().getRecipeManager()
+                .getFirstMatch(CompressorRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory) && canInsertItemIntoOutputSlot(inventory);
     }

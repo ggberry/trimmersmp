@@ -11,15 +11,15 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
-public class CrystalCompressorScreenHandler extends ScreenHandler {
+public class CompressorScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
 
-    public CrystalCompressorScreenHandler(int syncId, PlayerInventory inventory) {
+    public CompressorScreenHandler(int syncId, PlayerInventory inventory) {
         this(syncId, inventory, new SimpleInventory(3), new ArrayPropertyDelegate(2));
     }
-    public CrystalCompressorScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
-        super(ModScreenHandlers.CRYSTAL_COMPRESSOR_SCREEN_HANDLER, syncId);
+    public CompressorScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
+        super(ModScreenHandlers.COMPRESSOR_SCREEN_HANDLER, syncId);
         checkSize(inventory, 3);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);

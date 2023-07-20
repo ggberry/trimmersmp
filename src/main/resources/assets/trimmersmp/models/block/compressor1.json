@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "trimmersmp:block/crystal_compressor",
-		"particle": "trimmersmp:block/crystal_compressor"
+		"0": "trimmersmp:block/compressor",
+		"particle": "trimmersmp:block/compressor"
 	},
 	"elements": [
 		{
@@ -32,7 +32,7 @@
 		},
 		{
 			"from": [7, 10, 3],
-			"to": [9, 12, 6.8],
+			"to": [9, 12, 3.8],
 			"faces": {
 				"north": {"uv": [4, 3, 4.5, 3.5], "texture": "#0"},
 				"east": {"uv": [4, 3, 4.5, 3.5], "texture": "#0"},
@@ -43,8 +43,8 @@
 			}
 		},
 		{
-			"from": [5, 8, 6],
-			"to": [11, 14.6, 7],
+			"from": [5, 8, 4],
+			"to": [11, 14.6, 5],
 			"faces": {
 				"north": {"uv": [4.5, 0.5, 7.5, 3.5], "texture": "#0"},
 				"east": {"uv": [12, 0, 13, 4], "texture": "#0"},
@@ -55,8 +55,8 @@
 			}
 		},
 		{
-			"from": [5, 8, 9],
-			"to": [11, 14.6, 10],
+			"from": [5, 8, 11],
+			"to": [11, 14.6, 12],
 			"faces": {
 				"north": {"uv": [4, 0, 8, 4], "texture": "#0"},
 				"east": {"uv": [12, 0, 13, 4], "texture": "#0"},
@@ -67,7 +67,7 @@
 			}
 		},
 		{
-			"from": [7, 10, 9.1],
+			"from": [7, 10, 12.1],
 			"to": [9, 12, 13],
 			"faces": {
 				"north": {"uv": [4, 3, 4.5, 3.5], "texture": "#0"},
