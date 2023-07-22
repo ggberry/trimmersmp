@@ -32,21 +32,22 @@ public class TrimmerSmpDataGenerator implements DataGeneratorEntrypoint {
 
 		@Override
 		public void generate(Consumer<RecipeJsonProvider> exporter) {
-			ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CRYSTAL_COMPRESSOR)
-					.pattern("## ")
-					.pattern("#H ")
+			ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.COMPRESSOR)
+					.pattern("   ")
+					.pattern("# #")
 					.pattern("___")
-					.input('#', Ingredient.ofItems(Items.STONE))
-					.input('H', Ingredient.ofItems(Items.HEAVY_WEIGHTED_PRESSURE_PLATE))
-					.input('_', Ingredient.ofItems(Items.OAK_SLAB))
-					.criterion(hasItem(Items.STONE), conditionsFromItem(Items.STONE))
+					.input('#', Ingredient.ofItems(Items.PISTON))
+					.input('_', Ingredient.ofItems(Items.NETHERITE_BLOCK))
+					.criterion(hasItem(Items.PISTON), conditionsFromItem(Items.PISTON))
+					.criterion(hasItem(Items.NETHERITE_BLOCK), conditionsFromItem(Items.NETHERITE_BLOCK))
 					.offerTo(exporter);
 
 			CrystalCompressorRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.HARNESS_CRYSTAL)
-					.input(Ingredient.ofItems(Items.PITCHER_PLANT))
-					.fuel(Ingredient.ofItems(Items.TURTLE_HELMET))
-					.criterion(hasItem(Items.PITCHER_PLANT), conditionsFromItem(Items.PITCHER_PLANT))
-					.criterion(hasItem(Items.TURTLE_HELMET), conditionsFromItem(Items.TURTLE_HELMET))
+					.input(Ingredient.ofItems(Items.END_CRYSTAL))
+					.input(Ingredient.ofItems(ModItems.REFINED_SHARD))
+					.time(12000)
+					.criterion(hasItem(Items.END_CRYSTAL), conditionsFromItem(Items.END_CRYSTAL))
+					.criterion(hasItem(ModItems.REFINED_SHARD), conditionsFromItem(ModItems.REFINED_SHARD))
 					.offerTo(exporter);
 
 		}

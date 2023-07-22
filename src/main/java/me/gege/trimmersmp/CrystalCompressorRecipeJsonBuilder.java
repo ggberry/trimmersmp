@@ -32,7 +32,7 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
     private final Item output;
     private final int count;
     private final List<Ingredient> inputs = Lists.newArrayList();
-    private final List<Ingredient> fuel = Lists.newArrayList();
+    private Integer time = 0;
     private final Advancement.Builder advancementBuilder = Advancement.Builder.createUntelemetered();
     @Nullable
     private String group;
@@ -79,14 +79,8 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
         return this;
     }
 
-    public CrystalCompressorRecipeJsonBuilder fuel(Ingredient ingredient) {
-        return this.fuel((Ingredient)ingredient, 1);
-    }
-
-    public CrystalCompressorRecipeJsonBuilder fuel(Ingredient ingredient, int size) {
-        for(int i = 0; i < size; ++i) {
-            this.fuel.add(ingredient);
-        }
+    public CrystalCompressorRecipeJsonBuilder time(Integer time) {
+        this.time = time;
 
         return this;
     }
@@ -108,7 +102,7 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
     public void offerTo(Consumer<RecipeJsonProvider> exporter, Identifier recipeId) {
         this.validate(recipeId);
         this.advancementBuilder.parent(ROOT).criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId)).rewards(net.minecraft.advancement.AdvancementRewards.Builder.recipe(recipeId)).criteriaMerger(CriterionMerger.OR);
-        exporter.accept(new CrystalCompressorRecipeJsonBuilder.CrystalCompressorRecipeJsonProvider(recipeId, this.output, this.count, this.group == null ? "" : this.group, getCraftingCategory(this.category), this.fuel, this.inputs, this.advancementBuilder, recipeId.withPrefixedPath("recipes/" + this.category.getName() + "/")));
+        exporter.accept(new CrystalCompressorRecipeJsonBuilder.CrystalCompressorRecipeJsonProvider(recipeId, this.output, this.count, this.group == null ? "" : this.group, getCraftingCategory(this.category), this.inputs, this.time, this.advancementBuilder, recipeId.withPrefixedPath("recipes/" + this.category.getName() + "/")));
     }
 
     private void validate(Identifier recipeId) {
@@ -123,24 +117,24 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
         private final int count;
         private final String group;
         private final List<Ingredient> inputs;
-        private final Ingredient fuel;
+        private final Integer time;
         private final Advancement.Builder advancementBuilder;
         private final Identifier advancementId;
 
-        public CrystalCompressorRecipeJsonProvider(Identifier recipeId, Item output, int outputCount, String group, CraftingRecipeCategory craftingCategory, List<Ingredient> inputs, List<Ingredient> fuel, Advancement.Builder advancementBuilder, Identifier advancementId) {
+        public CrystalCompressorRecipeJsonProvider(Identifier recipeId, Item output, int outputCount, String group, CraftingRecipeCategory craftingCategory, List<Ingredient> inputs, Integer time, Advancement.Builder advancementBuilder, Identifier advancementId) {
             super(craftingCategory);
             this.recipeId = recipeId;
             this.output = output;
             this.count = outputCount;
             this.group = group;
             this.inputs = inputs;
-            this.fuel = fuel.get(0);
+            this.time = time;
             this.advancementBuilder = advancementBuilder;
             this.advancementId = advancementId;
         }
 
         public void serialize(JsonObject json) {
-            json.addProperty("type", "trimmersmp:crystal_compressor");
+            json.addProperty("type", "trimmersmp:compressing");
 
             // Hey, tell my why in the world would a function called serialize just add the property 'category' huh? This is so nonsensical.
 //            super.serialize(json);
@@ -158,7 +152,7 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
             }
 
             json.add("ingredients", jsonArray);
-            json.add("fuel", fuel.toJson());
+            json.addProperty("time", time);
 
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("item", Registries.ITEM.getId(this.output).toString());
