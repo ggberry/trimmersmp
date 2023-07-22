@@ -1,6 +1,6 @@
 package me.gege.trimmersmp.mixin;
 
-import me.gege.trimmersmp.trim_mechanics.ModTrimMechanics;
+import me.gege.trimmersmp.util.TrimCounter;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -24,12 +24,12 @@ public abstract class RibTrimMechanic extends LivingEntity{
 
     @Inject(at = @At("HEAD"), method = "applyDamage")
     private void ribTrimMechanic(CallbackInfo ci) {
-        int trims = new ModTrimMechanics().equippedTrims(this.getArmorItems(), "rib");
+        int trims = new TrimCounter().equippedTrims(this.getArmorItems(), "rib");
 
         if (trims == 2 || trims == 3) {
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 600, 0, false, false, false));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 618, 0, false, false, false));
         } else if (trims == 4) {
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 600, 1, false, false, false));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 618, 1, false, false, false));
         }
     }
 }

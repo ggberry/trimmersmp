@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "# #",
+    "___"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:piston"
+    },
+    "_": {
+      "item": "minecraft:netherite_block"
+    }
+  },
+  "result": {
+    "item": "trimmersmp:compressor"
+  }
+}

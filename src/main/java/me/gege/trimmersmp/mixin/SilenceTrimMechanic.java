@@ -1,6 +1,6 @@
 package me.gege.trimmersmp.mixin;
 
-import me.gege.trimmersmp.trim_mechanics.ModTrimMechanics;
+import me.gege.trimmersmp.util.TrimCounter;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -23,7 +23,7 @@ public abstract class SilenceTrimMechanic extends LivingEntity {
 
     @Inject(at = @At("HEAD"), method = "attack")
     private void silenceTrimMechanic(Entity target, CallbackInfo ci) {
-        int trims = new ModTrimMechanics().equippedTrims(this.getArmorItems(), "silence");
+        int trims = new TrimCounter().equippedTrims(this.getArmorItems(), "silence");
 
         if (target != null && this.getPose().toString().contains("CROUCHING") && target.isPlayer()) {
             if (trims == 2 || trims == 3) {

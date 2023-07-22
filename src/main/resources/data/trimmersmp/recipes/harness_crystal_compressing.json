@@ -1,0 +1,15 @@
+{
+  "type": "trimmersmp:compressing",
+  "ingredients": [
+    {
+      "item": "minecraft:end_crystal"
+    },
+    {
+      "item": "trimmersmp:refined_shard"
+    }
+  ],
+  "output": {
+    "item": "trimmersmp:harness_crystal"
+  },
+  "time": 12000
+}

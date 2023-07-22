@@ -7,9 +7,9 @@ import net.minecraft.util.Identifier;
 
 public class ModRecipies {
     public static void registerRecipes() {
-        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(TrimmerSmp.MOD_ID, CrystalCompressorRecipe.Serializer.ID),
-                CrystalCompressorRecipe.Serializer.INSTANCE);
-        Registry.register(Registries.RECIPE_TYPE, new Identifier(TrimmerSmp.MOD_ID, CrystalCompressorRecipe.Type.ID),
-                CrystalCompressorRecipe.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, new Identifier(TrimmerSmp.MOD_ID, CompressorRecipe.Serializer.ID),
+                CompressorRecipe.Serializer.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, new Identifier(TrimmerSmp.MOD_ID, CompressorRecipe.Type.ID),
+                CompressorRecipe.Type.INSTANCE);
     }
 }

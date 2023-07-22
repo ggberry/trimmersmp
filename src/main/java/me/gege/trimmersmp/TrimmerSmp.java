@@ -27,6 +27,8 @@ public class TrimmerSmp implements ModInitializer {
 
 		ItemGroupEvents.modifyEntriesEvent(ModItems.TRIMMERSMP_GROUP).register(itemGroup -> {
 			itemGroup.add(ModItems.HARNESS_CRYSTAL);
+			itemGroup.add(ModItems.ROOTED_SHARD);
+			itemGroup.add(ModItems.REFINED_SHARD);
 
 			itemGroup.add(ModItems.HARNESSED_WILD_ARMOR_TRIM);
 			itemGroup.add(ModItems.HARNESSED_VEX_ARMOR_TRIM);
@@ -37,7 +39,7 @@ public class TrimmerSmp implements ModInitializer {
 			itemGroup.add(ModItems.HARNESSED_RAISER_ARMOR_TRIM);
 			itemGroup.add(ModItems.HARNESSED_SHAPER_ARMOR_TRIM);
 
-			itemGroup.add(ModBlocks.CRYSTAL_COMPRESSOR);
+			itemGroup.add(ModBlocks.COMPRESSOR);
 		});
 
 		LOGGER.info("Initialized Trimmer SMP plugin (1.20.1)");

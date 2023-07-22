@@ -1,0 +1,44 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "trimmersmp:block/compressor"
+      },
+      "when": {
+        "state": "0"
+      }
+    },
+    {
+      "apply": {
+        "model": "trimmersmp:block/compressor1"
+      },
+      "when": {
+        "state": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "trimmersmp:block/compressor2"
+      },
+      "when": {
+        "state": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "trimmersmp:block/compressor3"
+      },
+      "when": {
+        "state": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "trimmersmp:block/compressor4"
+      },
+      "when": {
+        "state": "4"
+      }
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 package me.gege.trimmersmp.screen;
 
+import me.gege.trimmersmp.screen.custom.CompressionSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -10,23 +11,23 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
-public class CrystalCompressorScreenHandler extends ScreenHandler {
+public class CompressorScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
 
-    public CrystalCompressorScreenHandler(int syncId, PlayerInventory inventory) {
+    public CompressorScreenHandler(int syncId, PlayerInventory inventory) {
         this(syncId, inventory, new SimpleInventory(3), new ArrayPropertyDelegate(2));
     }
-    public CrystalCompressorScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
-        super(ModScreenHandlers.CRYSTAL_COMPRESSOR_SCREEN_HANDLER, syncId);
+    public CompressorScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
+        super(ModScreenHandlers.COMPRESSOR_SCREEN_HANDLER, syncId);
         checkSize(inventory, 3);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 
-        this.addSlot(new Slot(inventory, 0, 28, 39));
-        this.addSlot(new Slot(inventory, 1, 76, 39));
-        this.addSlot(new Slot(inventory, 2, 132, 39));
+        this.addSlot(new Slot(inventory, 0, 28, 27));
+        this.addSlot(new Slot(inventory, 1, 132, 27));
+        this.addSlot(new CompressionSlot(inventory, 2, 80, 27));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -38,14 +39,29 @@ public class CrystalCompressorScreenHandler extends ScreenHandler {
         return propertyDelegate.get(0) > 0;
     }
 
-    public int getScaledProgress() {
+    public boolean isEmpty() {
+        return inventory.isEmpty();
+    }
+
+    public int getBarProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);  // Max Progress
-        int progressArrowSize = 22; // This is the width in pixels of your arrow
+        int progressArrowSize = 143; // This is the width in pixels of your arrow
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
+    public int getProgressRemaining() {
+        int progress = this.propertyDelegate.get(0);
+        int maxProgress = this.propertyDelegate.get(1);
+
+        return maxProgress - progress;
+    }
+
+    @Override
+    public boolean canInsertIntoSlot(Slot slot) {
+        return false;
+    }
 
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {

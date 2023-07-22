@@ -1,7 +1,7 @@
 package me.gege.trimmersmp.block;
 
 import me.gege.trimmersmp.TrimmerSmp;
-import me.gege.trimmersmp.block.custom.CrystalCompressorBlock;
+import me.gege.trimmersmp.block.custom.CompressorBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -14,8 +14,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.item.BlockItem;
 
 public class ModBlocks {
-    public static final Block CRYSTAL_COMPRESSOR = registerBlock("crystal_compressor",
-            new CrystalCompressorBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).strength(4f).nonOpaque().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
+    public static final Block COMPRESSOR = registerBlock("compressor",
+            new CompressorBlock(FabricBlockSettings.copyOf(Blocks.NETHERITE_BLOCK).requiresTool().strength(50f).nonOpaque().sounds(BlockSoundGroup.WOOD)));
 
 
     private static Block registerBlock(String name, Block block) {

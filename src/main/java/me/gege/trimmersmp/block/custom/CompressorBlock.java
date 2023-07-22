@@ -1,17 +1,15 @@
 package me.gege.trimmersmp.block.custom;
 
-import me.gege.trimmersmp.block.entity.CrystalCompressorBlockEntity;
+import me.gege.trimmersmp.block.entity.CompressorBlockEntity;
 import me.gege.trimmersmp.block.entity.ModBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -20,39 +18,27 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CrystalCompressorBlock extends BlockWithEntity implements BlockEntityProvider {
-    public static final DirectionProperty FACING = Properties.FACING;
+public class CompressorBlock extends BlockWithEntity implements BlockEntityProvider {
+    public static final int MAX_COMPRESSION = 5;
+    public static final int PERCENTAGE = 100 / MAX_COMPRESSION;
+    public static final IntProperty COMPRESSION = IntProperty.of("state", 0, MAX_COMPRESSION);
 
-    public CrystalCompressorBlock(Settings settings) {
+
+    public CompressorBlock(Settings settings) {
         super(settings);
+        this.setDefaultState(this.stateManager.getDefaultState().with(COMPRESSION, 0));
     }
 
-    private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 10, 16);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(0, 0, 0, 16, 15, 16);
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
 
-    @Nullable
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
-    }
-
-    @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
-    }
-
-    @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
-    }
-
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(COMPRESSION);
     }
 
     /* BLOCK ENTITY */
@@ -66,8 +52,8 @@ public class CrystalCompressorBlock extends BlockWithEntity implements BlockEnti
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof CrystalCompressorBlockEntity) {
-                ItemScatterer.spawn(world, pos, (CrystalCompressorBlockEntity)blockEntity);
+            if (blockEntity instanceof CompressorBlockEntity) {
+                ItemScatterer.spawn(world, pos, (CompressorBlockEntity)blockEntity);
                 world.updateComparators(pos,this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -91,12 +77,12 @@ public class CrystalCompressorBlock extends BlockWithEntity implements BlockEnti
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CrystalCompressorBlockEntity(pos, state);
+        return new CompressorBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.CRYSTAL_COMPRESSOR_ENTITY, CrystalCompressorBlockEntity::tick);
+        return checkType(type, ModBlockEntities.COMPRESSOR_ENTITY, CompressorBlockEntity::tick);
     }
 }

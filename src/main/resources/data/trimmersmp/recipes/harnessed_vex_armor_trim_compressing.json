@@ -2,14 +2,14 @@
   "type": "trimmersmp:compressing",
   "ingredients": [
     {
-      "item": "minecraft:eye_armor_trim_smithing_template"
+      "item": "minecraft:vex_armor_trim_smithing_template"
     },
     {
       "item": "trimmersmp:harness_crystal"
     }
   ],
   "output": {
-    "item": "trimmersmp:harnessed_eye_armor_trim"
+    "item": "trimmersmp:harnessed_vex_armor_trim"
   },
   "time": 72
 }

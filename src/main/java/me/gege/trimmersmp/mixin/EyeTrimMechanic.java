@@ -1,6 +1,6 @@
 package me.gege.trimmersmp.mixin;
 
-import me.gege.trimmersmp.trim_mechanics.ModTrimMechanics;
+import me.gege.trimmersmp.util.TrimCounter;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -22,7 +22,7 @@ public abstract class EyeTrimMechanic extends LivingEntity{
 
     @Inject(at = @At("HEAD"), method = "applyDamage")
     public void eyeTrimMechanic(DamageSource source, float amount, CallbackInfo ci) {
-        int trims = new ModTrimMechanics().equippedTrims(this.getArmorItems(), "eye");
+        int trims = new TrimCounter().equippedTrims(this.getArmorItems(), "eye");
 
         if (source.getAttacker() != null && source.getAttacker().isPlayer() && this.getPose().toString().contains("CROUCHING")) {
             LivingEntity attacker = (LivingEntity)source.getAttacker();

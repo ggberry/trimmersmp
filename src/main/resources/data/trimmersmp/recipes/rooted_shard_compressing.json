@@ -1,0 +1,15 @@
+{
+  "type": "trimmersmp:compressing",
+  "ingredients": [
+    {
+      "item": "minecraft:pitcher_plant"
+    },
+    {
+      "item": "minecraft:echo_shard"
+    }
+  ],
+  "output": {
+    "item": "trimmersmp:rooted_shard"
+  },
+  "time": 1200
+}
