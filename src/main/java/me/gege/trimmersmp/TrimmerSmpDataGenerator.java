@@ -42,7 +42,7 @@ public class TrimmerSmpDataGenerator implements DataGeneratorEntrypoint {
 					.criterion(hasItem(Items.NETHERITE_BLOCK), conditionsFromItem(Items.NETHERITE_BLOCK))
 					.offerTo(exporter);
 
-			CrystalCompressorRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.HARNESS_CRYSTAL)
+			CompressorRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.HARNESS_CRYSTAL)
 					.input(Ingredient.ofItems(Items.END_CRYSTAL))
 					.input(Ingredient.ofItems(ModItems.REFINED_SHARD))
 					.time(12000)

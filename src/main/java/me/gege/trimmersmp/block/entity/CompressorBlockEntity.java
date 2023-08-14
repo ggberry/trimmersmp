@@ -104,7 +104,7 @@ public class CompressorBlockEntity extends BlockEntity implements NamedScreenHan
         }
 
         if (entity.getMaxTime() > 0) {
-            int progress = (int) (Math.floor((double) entity.progress / entity.getMaxTime() * 100 / PERCENTAGE));
+            int progress = (int) (Math.floor((double) entity.progress / entity.getMaxTime() * 100 / PERCENTAGE + 1));
             if (world.getBlockState(blockPos).get(COMPRESSION) != progress) {
                 entity.getWorld().playSound(null, blockPos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS);
             }
@@ -112,9 +112,11 @@ public class CompressorBlockEntity extends BlockEntity implements NamedScreenHan
             world.setBlockState(blockPos, blockState.with(COMPRESSION, progress));
         }
 
-        if (entity.getMaxTime() == 0 && world.getBlockState(blockPos).get(COMPRESSION) != 0) {
+        if (entity.getMaxTime() == 0 && world.getBlockState(blockPos).get(COMPRESSION) != 0 && entity.getStack(2).isEmpty()) {
             entity.getWorld().playSound(null, blockPos, SoundEvents.BLOCK_PISTON_EXTEND, SoundCategory.BLOCKS);
             world.setBlockState(blockPos, blockState.with(COMPRESSION, 0));
+            entity.resetProgress();
+
         }
 
         if (hasRecipe(entity)) {
@@ -125,8 +127,7 @@ public class CompressorBlockEntity extends BlockEntity implements NamedScreenHan
                 craftItem(entity);
             }
 
-        } else {
-            entity.resetProgress();
+        } else  {
             markDirty(world, blockPos, blockState);
         }
     }
@@ -162,10 +163,9 @@ public class CompressorBlockEntity extends BlockEntity implements NamedScreenHan
 
             entity.setStack(2, new ItemStack(recipe.get().getOutput(DynamicRegistryManager.EMPTY).getItem(),
                     entity.getStack(2).getCount() + 1));
-
-            entity.resetProgress();
+            }
         }
-    }
+
 
     public static boolean hasRecipe(CompressorBlockEntity entity) {
         SimpleInventory inventory = new SimpleInventory(entity.size());

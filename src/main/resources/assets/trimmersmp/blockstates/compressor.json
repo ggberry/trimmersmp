@@ -39,6 +39,14 @@
       "when": {
         "state": "4"
       }
+    },
+    {
+      "apply": {
+        "model": "trimmersmp:block/compressor5"
+      },
+      "when": {
+        "state": "5"
+      }
     }
   ]
 }
