@@ -1,8 +1,6 @@
 package me.gege.trimmersmp;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancement.Advancement;
@@ -27,7 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implements CraftingRecipeJsonBuilder {
+public class CompressorRecipeJsonBuilder extends RecipeJsonBuilder implements CraftingRecipeJsonBuilder {
     private final RecipeCategory category;
     private final Item output;
     private final int count;
@@ -37,29 +35,29 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
     @Nullable
     private String group;
 
-    public CrystalCompressorRecipeJsonBuilder(RecipeCategory category, ItemConvertible output, int count) {
+    public CompressorRecipeJsonBuilder(RecipeCategory category, ItemConvertible output, int count) {
         this.category = category;
         this.output = output.asItem();
         this.count = count;
     }
 
-    public static CrystalCompressorRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output) {
-        return new CrystalCompressorRecipeJsonBuilder(category, output, 1);
+    public static CompressorRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output) {
+        return new CompressorRecipeJsonBuilder(category, output, 1);
     }
 
-    public static CrystalCompressorRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
-        return new CrystalCompressorRecipeJsonBuilder(category, output, count);
+    public static CompressorRecipeJsonBuilder create(RecipeCategory category, ItemConvertible output, int count) {
+        return new CompressorRecipeJsonBuilder(category, output, count);
     }
 
-    public CrystalCompressorRecipeJsonBuilder input(TagKey<Item> tag) {
+    public CompressorRecipeJsonBuilder input(TagKey<Item> tag) {
         return this.input(Ingredient.fromTag(tag));
     }
 
-    public CrystalCompressorRecipeJsonBuilder input(ItemConvertible itemProvider) {
+    public CompressorRecipeJsonBuilder input(ItemConvertible itemProvider) {
         return this.input((ItemConvertible)itemProvider, 1);
     }
 
-    public CrystalCompressorRecipeJsonBuilder input(ItemConvertible itemProvider, int size) {
+    public CompressorRecipeJsonBuilder input(ItemConvertible itemProvider, int size) {
         for(int i = 0; i < size; ++i) {
             this.input(Ingredient.ofItems(new ItemConvertible[]{itemProvider}));
         }
@@ -67,11 +65,11 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
         return this;
     }
 
-    public CrystalCompressorRecipeJsonBuilder input(Ingredient ingredient) {
+    public CompressorRecipeJsonBuilder input(Ingredient ingredient) {
         return this.input((Ingredient)ingredient, 1);
     }
 
-    public CrystalCompressorRecipeJsonBuilder input(Ingredient ingredient, int size) {
+    public CompressorRecipeJsonBuilder input(Ingredient ingredient, int size) {
         for(int i = 0; i < size; ++i) {
             this.inputs.add(ingredient);
         }
@@ -79,18 +77,18 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
         return this;
     }
 
-    public CrystalCompressorRecipeJsonBuilder time(Integer time) {
+    public CompressorRecipeJsonBuilder time(Integer time) {
         this.time = time;
 
         return this;
     }
 
-    public CrystalCompressorRecipeJsonBuilder criterion(String string, CriterionConditions criterionConditions) {
+    public CompressorRecipeJsonBuilder criterion(String string, CriterionConditions criterionConditions) {
         this.advancementBuilder.criterion(string, criterionConditions);
         return this;
     }
 
-    public CrystalCompressorRecipeJsonBuilder group(@Nullable String string) {
+    public CompressorRecipeJsonBuilder group(@Nullable String string) {
         this.group = string;
         return this;
     }
@@ -102,7 +100,7 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
     public void offerTo(Consumer<RecipeJsonProvider> exporter, Identifier recipeId) {
         this.validate(recipeId);
         this.advancementBuilder.parent(ROOT).criterion("has_the_recipe", RecipeUnlockedCriterion.create(recipeId)).rewards(net.minecraft.advancement.AdvancementRewards.Builder.recipe(recipeId)).criteriaMerger(CriterionMerger.OR);
-        exporter.accept(new CrystalCompressorRecipeJsonBuilder.CrystalCompressorRecipeJsonProvider(recipeId, this.output, this.count, this.group == null ? "" : this.group, getCraftingCategory(this.category), this.inputs, this.time, this.advancementBuilder, recipeId.withPrefixedPath("recipes/" + this.category.getName() + "/")));
+        exporter.accept(new CompressorRecipeJsonBuilder.CompressorRecipeJsonProvider(recipeId, this.output, this.count, this.group == null ? "" : this.group, getCraftingCategory(this.category), this.inputs, this.time, this.advancementBuilder, recipeId.withPrefixedPath("recipes/" + this.category.getName() + "/")));
     }
 
     private void validate(Identifier recipeId) {
@@ -111,7 +109,7 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
         }
     }
 
-    public static class CrystalCompressorRecipeJsonProvider extends RecipeJsonBuilder.CraftingRecipeJsonProvider {
+    public static class CompressorRecipeJsonProvider extends RecipeJsonBuilder.CraftingRecipeJsonProvider {
         private final Identifier recipeId;
         private final Item output;
         private final int count;
@@ -121,7 +119,7 @@ public class CrystalCompressorRecipeJsonBuilder extends RecipeJsonBuilder implem
         private final Advancement.Builder advancementBuilder;
         private final Identifier advancementId;
 
-        public CrystalCompressorRecipeJsonProvider(Identifier recipeId, Item output, int outputCount, String group, CraftingRecipeCategory craftingCategory, List<Ingredient> inputs, Integer time, Advancement.Builder advancementBuilder, Identifier advancementId) {
+        public CompressorRecipeJsonProvider(Identifier recipeId, Item output, int outputCount, String group, CraftingRecipeCategory craftingCategory, List<Ingredient> inputs, Integer time, Advancement.Builder advancementBuilder, Identifier advancementId) {
             super(craftingCategory);
             this.recipeId = recipeId;
             this.output = output;
